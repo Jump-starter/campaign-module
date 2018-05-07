@@ -5,6 +5,7 @@ const fs = require('fs');
 let levelId = 0;
 let dataString = '';
 for (let projectId = 1; projectId <= 300000; projectId++) {
+  let projectInfo = faker.lorem.sentences();
   let numberOfLevels = 3 + Math.floor(Math.random() * 8);
   let startingCutoffAmount = 50 + Math.floor(Math.random() * 100);
   for (let levelsId = 1; levelsId < numberOfLevels; levelsId++) {
@@ -12,6 +13,7 @@ for (let projectId = 1; projectId <= 300000; projectId++) {
     levelId++;
     level.push(levelId);
     level.push(projectId);
+    level.push(projectInfo);
     level.push(startingCutoffAmount);
     startingCutoffAmount += 50 + Math.floor(Math.random() * 100);
     level.push(faker.company.bsNoun());
@@ -31,8 +33,8 @@ for (let projectId = 1; projectId <= 300000; projectId++) {
     dataString += lineString + '\n';
   }
 
-  if (projectId % 50000 === 0) {
-    fs.appendFileSync('./data/levels.txt', dataString);
+  if (projectId % 30000 === 0) {
+    fs.appendFileSync('./data/levels2.txt', dataString);
     dataString = '';
     console.log('The data was appended to file!')
   }

@@ -12,7 +12,7 @@ class About extends React.Component {
 
 	componentDidMount() {
 		let context = this;
-		axios.get(`http://54.209.149.1:80/about/${this.props.projectId}`)
+		axios.get(`http://localhost:3003/about/${this.props.projectId}`)
 		.then(result => {
 			context.setState({aboutInfo: result.data});
 		})
