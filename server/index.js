@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const parser = require('body-parser');
 const morgan = require('morgan');
@@ -25,3 +26,5 @@ app.post('/:projectId/:levelId/:pledgeAmount', handleWritePledge);
 app.listen(port, () => {
 	console.log(`listening on http://localhost:${port}`);
 });
+
+module.exports = app;

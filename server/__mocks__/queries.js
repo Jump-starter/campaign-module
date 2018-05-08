@@ -1,17 +1,18 @@
-const db = require('../../db/index.js');
 
 const getLevels = (projectId) => {
 	return new Promise((resolve, reject) => {
-		const query = 'SELECT levels.*, count(*) AS numberbackers from levels JOIN users_levels ON (levels.id = users_levels.level_id) WHERE project_id = $1 GROUP BY levels.id ORDER BY levels.id';
-		const values = [projectId];
-		db.query(query, values)
-			.then((response) => {
-				resolve(response.rows);
-			})
-			.catch((error) => {
-				console.error(error.stack);
-				reject(error);
-			});
+		resolve([{
+			id: 554,
+			project_id: 100,
+			cutoff_amount: 98,
+			name: 'e-markets',
+			description: 'Et incidunt sint ullam quisquam veritatis facere nemo.',
+			estimated_delivery: '2018-12-22T19:13:28.000Z',
+			ships_to: 'Denmark',
+			includes: '["totam fugiat quasi"]',
+			max_backers: 144,
+			numberbackers: '13',
+		}]);
 	});
 };
 
@@ -21,6 +22,7 @@ const getAboutInfo = (projectId) => {
 		const values = [projectId];
 		db.query(query, values)
 			.then((response) => {
+				console.log(response.rows);
 				resolve(response.rows);
 			})
 			.catch((error) => {
