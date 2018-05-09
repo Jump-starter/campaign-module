@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hack-reactor-fec/campaign-module#readme",
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js"
+    "verbose": true
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -32,12 +32,15 @@
     "moment": "^2.22.0",
     "mongoose": "^5.0.14",
     "morgan": "^1.9.0",
-    "pg": "^7.4.2",
+    "newrelic": "^4.1.0",
+    "pg": "^7.4.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "sass": "^1.1.1"
+    "sass": "^1.3.2"
   },
   "devDependencies": {
+    "artillery": "^1.6.0-15",
+    "axios-mock-adapter": "^1.15.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
@@ -54,9 +57,10 @@
     "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.3",
     "jest-enzyme": "^6.0.0",
-    "nodemon": "^1.17.3",
+    "nodemon": "^1.17.4",
     "react-test-renderer": "^16.3.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "supertest": "^3.0.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3"
   }
 }

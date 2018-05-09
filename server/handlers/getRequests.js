@@ -23,7 +23,7 @@ const handleLevelsRequest = (request, response) => {
 		}).catch((error) => {
 			console.log('ERROR in get /levels', error);
 			response.writeHead(404);
-			response.end('Error in handle request', error);
+			response.end('Error in request handler', error);
 		});
 };
 
