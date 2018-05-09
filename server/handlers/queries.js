@@ -6,7 +6,22 @@ const getLevels = (projectId) => {
 		const values = [projectId];
 		db.query(query, values)
 			.then((response) => {
-				resolve(response.rows);
+				const data = [];
+				for (let i = 0; i < response.rows.length; i += 1) {
+					const listing = {};
+					listing.id = response.rows[i].project_id;
+					listing.projectId = response.rows[i].project_id;
+					listing.cutoffAmount = response.rows[i].cutoff_amount;
+					listing.name = response.rows[i].name;
+					listing.description = response.rows[i].description;
+					listing.estimatedDelivery = response.rows[i].estimated_delivery;
+					listing.shipsTo = response.rows[i].ships_to;
+					listing.includes = JSON.parse(response.rows[i].includes);
+					listing.maxBackers = response.rows[i].max_backers;
+					listing.numberOfBackers = response.rows[i].numberbackers;
+					data.push(listing);
+				}
+				resolve(data);
 			})
 			.catch((error) => {
 				console.error(error.stack);
@@ -21,7 +36,8 @@ const getAboutInfo = (projectId) => {
 		const values = [projectId];
 		db.query(query, values)
 			.then((response) => {
-				resolve(response.rows);
+				const data = response.rows[0].about_info;
+				resolve(data);
 			})
 			.catch((error) => {
 				console.error(error.stack);
