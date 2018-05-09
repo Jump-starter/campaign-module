@@ -1,25 +1,13 @@
+const redis = require('redis');
 const { getLevels, getAboutInfo } = require('./queries.js');
+const { REDIS_PORT } = process.env;
+const client = redis.createClient(REDIS_PORT);
 
 const handleLevelsRequest = (request, response) => {
 	getLevels(request.params.projectId)
 		.then((results) => {
-			const data = [];
-			for (let i = 0; i < results.length; i += 1) {
-				const listing = {};
-				listing.id = results[i].project_id;
-				listing.projectId = results[i].project_id;
-				listing.cutoffAmount = results[i].cutoff_amount;
-				listing.name = results[i].name;
-				listing.description = results[i].description;
-				listing.estimatedDelivery = results[i].estimated_delivery;
-				listing.shipsTo = results[i].ships_to;
-				listing.includes = JSON.parse(results[i].includes);
-				listing.maxBackers = results[i].max_backers;
-				listing.numberOfBackers = results[i].numberbackers;
-				data.push(listing);
-			}
 			response.writeHead(200);
-			response.end(JSON.stringify(data));
+			response.end(JSON.stringify(results));
 		}).catch((error) => {
 			console.log('ERROR in get /levels', error);
 			response.writeHead(404);
@@ -30,9 +18,8 @@ const handleLevelsRequest = (request, response) => {
 const handleAboutInfoRequest = (request, response) => {
 	getAboutInfo(request.params.projectId)
 		.then((results) => {
-			const data = results[0].about_info;
 			response.writeHead(200);
-			response.end(JSON.stringify(data));
+			response.end(JSON.stringify(results));
 		})
 		.catch((error) => {
 			console.log('ERROR in get /about', error);
@@ -41,4 +28,37 @@ const handleAboutInfoRequest = (request, response) => {
 		});
 };
 
-module.exports = { handleLevelsRequest, handleAboutInfoRequest };
+const cacheLevel = (request, response, next) => {
+	client.get(request.params.projectId, (error, data) => {
+		if (error) throw error;
+		if (data !== null) {
+				response.writeHead(200)
+				response.end(data);
+		} else {
+			getLevels(request.params.projectId)
+				.then((result) => {
+					client.set(request.params.projectId, JSON.stringify(result))
+				})
+			next();
+		}
+	})
+}
+
+const cacheAbout = (request, response, next) => {
+	client.get(request.params.projectId, (error, data) => {
+		if (error) throw error;
+		if (data !== null) {
+			console.log(data)
+			response.writeHead(200)
+			response.end(data);
+		} else {
+			getAboutInfo(request.params.projectId)
+				.then((result) => {
+					client.set(request.params.projectId, JSON.stringify(result))
+				})
+			next();
+		}
+	})
+}
+
+module.exports = { handleLevelsRequest, handleAboutInfoRequest, cacheLevel, cacheAbout };
