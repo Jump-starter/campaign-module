@@ -3,23 +3,29 @@ config:
   phases:
     - duration: 30
       arrivalRate: 10
-      name: "Warm up"
-    - duration: 60
-      arrivalRate: 30
       name: "High traffic"
+    - duration: 10
+      arrivalRate: 1
+      name: "Slow down"
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - name: "browsing"
     flow:
-    - get:
-        url: "/{{ $randomNumber(1, 500) }}"
+      - loop:
+        - get:
+            url: "/{{ $randomNumber(1, 500) }}"
+        count: 50
   - name: "levels query"
     flow:
-    - get:
-        url: "/levels/{{ $randomNumber(1, 500) }}"
+      - loop:
+        - get:
+            url: "/levels/{{ $randomNumber(1, 500) }}"
+        count: 50
   - name: "about query"
     flow:
-    - get:
-        url: "/about/{{ $randomNumber(1, 500) }}"
+      - loop:
+        - get:
+            url: "/about/{{ $randomNumber(1, 500) }}"
+        count: 50
