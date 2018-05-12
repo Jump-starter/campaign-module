@@ -11,7 +11,7 @@ const handleLevelsRequest = (request, response) => {
 		}).catch((error) => {
 			console.log('ERROR in get /levels', error);
 			response.writeHead(404);
-			response.end('Error in request handler', error);
+			response.end('Error in request handler', JSON.stringify(error));
 		});
 };
 
@@ -24,7 +24,7 @@ const handleAboutInfoRequest = (request, response) => {
 		.catch((error) => {
 			console.log('ERROR in get /about', error);
 			response.writeHead(404);
-			response.end(error);
+			response.end(JSON.stringify(error));
 		});
 };
 
@@ -32,14 +32,16 @@ const cacheLevel = (request, response, next) => {
 	client.get(request.params.projectId, (error, data) => {
 		if (error) throw error;
 		if (data !== null) {
-				response.writeHead(200)
-				response.end(data);
+			response.writeHead(200)
+			response.end(data);
 		} else {
 			getLevels(request.params.projectId)
 				.then((result) => {
 					client.set(request.params.projectId, JSON.stringify(result))
+					response.writeHead(200);
+					response.end(JSON.stringify(result));
 				})
-			next();
+			// next();
 		}
 	})
 }
@@ -48,7 +50,6 @@ const cacheAbout = (request, response, next) => {
 	client.get(request.params.projectId, (error, data) => {
 		if (error) throw error;
 		if (data !== null) {
-			console.log(data)
 			response.writeHead(200)
 			response.end(data);
 		} else {

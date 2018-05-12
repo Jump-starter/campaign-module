@@ -8,12 +8,12 @@
 	</head>
 	<body>
 		<div id="Campaign"></div>
-		<script type="text/javascript" src="./bundle.js"></script>
+		<script type="text/javascript" src="https://s3-us-west-1.amazonaws.com/jumpstartercampaign/bundle.js"></script>
 		<script>
 			const project = window.location.href.split('/')[3];
-			console.log(project)
+			const url = window.location.origin;
 			ReactDOM.render(
-				React.createElement(Campaign, {projectId: project, username: "Saige99"}),
+				React.createElement(Campaign, {projectId: project, url: url}),
 				document.getElementById('Campaign')
 			)
 		</script>

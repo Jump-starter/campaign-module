@@ -3,22 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon server/index.js --watch",
+    "start": "NODE_ENV=production node server/index.js",
     "react-dev": "webpack -d --watch",
+    "build": "webpack --mode production",
     "server-dev": "nodemon server/index.js",
     "test": "jest --coverage",
     "style": "sass client/src/styles/styles.scss client/dist/styles.css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hack-reactor-fec/campaign-module.git"
+    "url": "git+https://github.com/jump-starter/sdc-campaign-module.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hack-reactor-fec/campaign-module/issues"
+    "url": "https://github.com/jump-starter/sdc-campaign-module/issues"
   },
-  "homepage": "https://github.com/hack-reactor-fec/campaign-module#readme",
+  "homepage": "https://github.com/jump-starter/sdc-campaign-module#readme",
   "jest": {
     "verbose": true
   },

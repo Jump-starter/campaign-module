@@ -1,6 +1,7 @@
 node_modules
-data
+src
 coverage
-newrelic.js
+postgres
+__mocks__
+__tests__
 newrelic_agent.log
-bundle.js
