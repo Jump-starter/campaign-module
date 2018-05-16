@@ -79,7 +79,7 @@ class Support extends React.Component {
 				<div id="support-container">
 					<h1 id="support-header" className="section-header">Support</h1>
 					<div id="support-components-container">
-							<PledgeBox projectId={this.props.projectId} username={this.props.username} />
+							<PledgeBox projectId={this.props.projectId} />
 							<Levels fetchLevels={this.fetchLevels} allCurrentLevels={this.state.allCurrentLevels} currentLevels={this.state.currentLevels} limitedLevels={this.state.limitedLevels} fullLevels={this.state.fullLevels} />
 					</div>
 				</div>

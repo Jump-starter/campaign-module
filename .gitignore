@@ -4,3 +4,4 @@ coverage
 newrelic.js
 newrelic_agent.log
 bundle.js
+.git

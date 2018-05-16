@@ -45,7 +45,6 @@ class PledgeBox extends React.Component {
 
 	handleContinueButtonClick(e) {
 		let userNewBackedProject = {};
-		userNewBackedProject.username = this.props.username;
 		userNewBackedProject.projectId = this.props.projectId;
 		let pledgeAmount = e.target.closest('#pledge-component-container').find('.pledge-amount-chosen').value;
 		userNewBackedProject.amount = pledgeAmount;
