@@ -19,7 +19,7 @@ class Support extends React.Component {
 
 	fetchLevels() {
 		let context = this;
-		axios.get(`http://localhost:3003/levels/${this.props.projectId}`)
+		axios.get(`${this.props.url}/levels/${this.props.projectId}`)
 		.then(results => {
 			let levels = results.data;
 			let updatedAllCurrentLevels = [];
@@ -47,7 +47,7 @@ class Support extends React.Component {
 
 	componentDidMount() {
 		let context = this;
-		axios.get(`http://localhost:3003/levels/${this.props.projectId}`)
+		axios.get(`${this.props.url}/levels/${this.props.projectId}`)
 		.then(results => {
 			let levels = results.data;
 			let updatedAllCurrentLevels = [];

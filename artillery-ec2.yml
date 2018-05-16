@@ -1,5 +1,5 @@
 config:
-  target: 'http://localhost:3003'
+  target: 'http://ec2-54-193-114-227.us-west-1.compute.amazonaws.com'
   phases:
     - duration: 60
       arrivalRate: 10
@@ -11,16 +11,16 @@ scenarios:
       - loop:
         - get:
             url: "/{{ $randomNumber(1,50000) }}/"
-        count: 100
+        count: 10
   - name: "levels query"
     flow:
       - loop:
         - get:
             url: "/levels/{{ $randomNumber(1,50000) }}/"
-        count: 100
+        count: 10
   - name: "about query"
     flow:
       - loop:
         - get:
             url: "/about/{{ $randomNumber(1,50000) }}/"
-        count: 100
+        count: 10

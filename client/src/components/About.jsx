@@ -12,7 +12,7 @@ class About extends React.Component {
 
 	componentDidMount() {
 		let context = this;
-		axios.get(`http://localhost:3003/about/${this.props.projectId}`)
+		axios.get(`${this.props.url}/about/${this.props.projectId}`)
 		.then(result => {
 			context.setState({aboutInfo: result.data});
 		})
@@ -22,6 +22,7 @@ class About extends React.Component {
 	}
 
 	render() {
+		console.log('test===', this.props.url)
 		return (
 			<div id="about-master-container">
 				<div id="about-container">

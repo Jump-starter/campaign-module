@@ -16,8 +16,8 @@ class Campaign extends React.Component {
 	render() {
 		return (
 			<div id="app-container">
-				<About projectId={this.props.projectId} />
-				<Support projectId={this.props.projectId} username={this.props.username} />
+				<About projectId={this.props.projectId} url={this.props.url} />
+				<Support projectId={this.props.projectId} username={this.props.username} url={this.props.url} />
 			</div>
 		)
 	}
