@@ -3,3 +3,8 @@ data
 coverage
 newrelic.js
 newrelic_agent.log
+<<<<<<< Updated upstream
+=======
+bundle.js
+.git
+>>>>>>> Stashed changes

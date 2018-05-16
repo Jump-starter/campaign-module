@@ -10,14 +10,6 @@ class PledgeInputArea extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentWillMount() {
-		document.addEventListener('mousedown', this.handleClick, false);
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('mousedown', this.handleClick, false);
-	}
-
 	handleClick(e) {
 		if (this.node.contains(e.target)) {
 			return;
